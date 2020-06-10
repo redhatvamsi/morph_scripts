@@ -1,0 +1,22 @@
+TASKS
+ShellScript.sh
+
+task_file_1: 
+- name: "ShellScript"
+- code: "script",
+- type_name: "Shell Script"
+- file_source_type :
+- file_content: "ShellScript.sh"
+
+WORKFLOWS
+workflow_file_1:
+- name: "my_workflow"
+- type: "operation"
+- optionTypes: [3,4,5]
+- tasks:
+	task1:
+	  task_id:3
+	  task_phase:
+	task2:
+	  task_id:5
+	  task_phase:

@@ -16,9 +16,9 @@ workflow_file_1:
 - type: "operation"
 - optionTypes: [3,4,5]
 - tasks:
-	task1:
-	  task_id:3
-	  task_phase:
-	task2:
-	  task_id:5
-	  task_phase:
+   task1:
+     task_id:3
+     task_phase:
+   task2:
+    task_id:5
+    task_phase:

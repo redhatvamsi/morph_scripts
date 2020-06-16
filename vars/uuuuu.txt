@@ -1,0 +1,31 @@
+def call(config) {
+    def request = [
+        url                    : "https://myclouddev.cargill.com/api/tasks/${config.taskId}",
+        httpMode               : config.method,
+        customHeaders          : [[name: 'Content-Type', value: 'application/json'],[name: 'Authorization', value: "BEARER ${config.token}"]],
+        consoleLogResponseBody : true
+    ] as LinkedHashMap
+    if (config.body) {
+        request << [requestBody: config.body]
+    }
+    if (config.validResponseCodes) {
+        request << [validResponseCodes: config.validResponseCodes]
+    }
+    def httpResponse = httpRequest request
+    if(httpResponse.status != 204) {
+        def slurper = new groovy.json.JsonSlurper()
+        def morpheusTaskslist = slurper.parseText(httpResponse.content)
+         morpheusTaskslist.each { tasks ->
+            println "task id is ${tasks}" 
+        }
+        // morpheusTaskslist.each { key, value ->
+        //   println "$key : $value"
+        // }
+    }
+}
+return this
+
+
+task id is task={id=296, accountId=1, name=apijenkinstest, code=powershell, taskType={id=1, code=script, name=Shell Script}, taskOptions={username=null, script=null, host=null, sshKey=null, password=null, localScriptGitRef=null, localScriptGitId=null, port=null}, file={id=17, sourceType=local, contentRef=null, contentPath=null, repository=null, content=curl test jun10th}, resultType=null, executeTarget=resource, retryable=false, retryCount=5, retryDelaySeconds=10, allowCustomConfig=false, dateCreated=2020-05-21T16:27:49+0000, lastUpdated=2020-06-15T21:46:49+0000}
+[Pipeline] End of Pipeline
+Finished: SUCCESS

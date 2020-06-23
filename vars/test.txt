@@ -30,3 +30,5 @@ parsedJson.each { key, value ->
    
 // }
 
+{"task":{"id":296,"accountId":1,"name":"apijenkinstest","code":"powershell","taskType":{"id":1,"code":"script","name":"Shell Script"},"taskOptions":{"localScriptGitId":null,"username":null,"password":null,"localScriptGitRef":null,"port":null,"host":null,"sshKey":null,"script":null},"file":{"id":17,"sourceType":"local","contentRef":null,"contentPath":null,"repository":null,"content":null},"resultType":null,"executeTarget":"resource","retryable":false,"retryCount":5,"retryDelaySeconds":10,"allowCustomConfig":false,"dateCreated":"2020-05-21T16:27:49+0000","lastUpdated":"2020-06-15T21:46:49+0000"}}
+

@@ -1,0 +1,32 @@
+import groovy.json.JsonSlurper
+import groovy.json.JsonBuilder
+String jsonString = '''{"menu": {
+"id": "file",
+"tools": {
+"actions": [
+{"id": "new", "title": "NewFile"},
+{"id": "open", "title": "OpenFile"},
+{"id": "close", "title": "CloseFile"}
+],
+"errors": []
+}}}'''
+JsonSlurper slurper = new JsonSlurper()
+def parsedJson = slurper.parseText(jsonString)
+def file_extenstion = ".yaml"
+parsedJson.each { key, value ->
+
+ for (action in value.tools.actions){
+   def file_name = "$action.title$file_extenstion"
+   println " filename is : $file_name"
+   def file = new File('/opt/iaac/workspace/morph_scripts/new_scripts/'+file_name)
+       file.write(new JsonBuilder(action).toPrettyString())
+ }
+
+ //println " filename is : $value.title$file_extenstion "
+}
+
+// parsedJson.menu.tools.each { key, value ->
+//     println "$value.title"
+   
+// }
+

@@ -43,3 +43,17 @@ parsedJson.each { key, value ->
  def file = new File(file_name)
  file.write(new JsonBuilder(value).toPrettyString())
 }
+
+
+  def slurper = new groovy.json.JsonSlurper()
+        def morpheusTaskslist = slurper.parseText(httpResponse.content)
+        def file_path = "/home/CloudAdmin/jenkins/workspace/MorpheusJobs/Taskslist"
+        def file_extenstion = ".yaml"
+
+        morpheusTaskslist.each { key, value ->
+         println "task name is $value.name"
+         def file_name = "$file_path/$value.name$file_extenstion"
+         println "filename is $file_name"
+         node('morpheus') {
+           writeYaml file: '$file_name', data: value
+         }

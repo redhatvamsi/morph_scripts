@@ -1,0 +1,30 @@
+{
+    "task": {
+      "name": "Task-Name",  // Please provide Task name same as in Git repo.
+      "taskType": {
+        "id": 5,
+        "code": "winrmTask"
+      },
+      "resultType": "value",
+      "file": {
+        "sourceType": "repository",
+        "repository": {
+          "id": 3
+        },
+        "contentPath": "Tasks_Prod/SQL_InstanceRename.ps1",   // Please provide git repo path here.
+        "contentRef": "dev"
+      },
+      "taskOptions": {
+        "elevated": "on",          // Please select Elevated Shell 'on' or 'off'
+        "host": "10.0.0.0",        // Please provide IP Address according to request.
+        "port": "22",              // required
+        "username": "Username",    // required
+        "password": "Password"     // required
+      },
+      "executeTarget": "remote",
+      "retryable": false,          // By default it is false.
+      //"retryCount": 5,
+      //"retryDelay": 10,
+      "allowCustomConfig": false
+    }
+  }
